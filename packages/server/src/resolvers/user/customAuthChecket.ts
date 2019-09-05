@@ -1,6 +1,5 @@
 import { AuthChecker } from "type-graphql"
 import { MyContext } from "../../schema/MyContext"
-import console = require("console")
 
 export const customAuthChecker: AuthChecker<MyContext> = (
   { root, args, context, info },
