@@ -40,8 +40,7 @@ export default (App: any) => {
       const apollo = initApollo(
         {},
         {
-          getToken: () => parseCookies()["access-token"],
-          // getToken: () => parseCookies(req).qid,
+          getToken: () => parseCookies(req).token,
           link: uploadLink,
         },
       )
@@ -102,7 +101,7 @@ export default (App: any) => {
 
       this.apolloClient = initApollo(props.apolloState, {
         getToken: () => {
-          return parseCookies()["access-token"]
+          return parseCookies().token
         },
       })
     }

@@ -15,7 +15,7 @@ export const authMiddleware = async function(
     const refreshToken = req.cookies["refresh-token"]
 
     if (!refreshToken && !accessToken) {
-      console.warn("No token provided in the request")
+      // console.warn("No token provided in the request")
       return next()
     }
 

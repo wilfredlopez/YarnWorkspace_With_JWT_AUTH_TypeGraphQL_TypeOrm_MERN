@@ -5,6 +5,7 @@ import withApollo from "../lib/withApollo"
 import { ApolloClient } from "apollo-boost"
 
 import "../css/styles.css"
+import Head from "next/head"
 
 interface IProps {
   apolloClient: ApolloClient<any>
@@ -16,9 +17,14 @@ class MyApp extends App<IProps> {
   render() {
     const { Component, pageProps, apolloClient } = this.props
     return (
-      <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
-      </ApolloProvider>
+      <div>
+        <Head>
+          <link rel="stylesheet" href="static/styles.css" />
+        </Head>
+        <ApolloProvider client={apolloClient}>
+          <Component {...pageProps} />
+        </ApolloProvider>
+      </div>
     )
   }
 }

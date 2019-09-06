@@ -73,8 +73,7 @@ export type Query = {
   files: Array<Scalars['String']>,
   test: Scalars['String'],
   me?: Maybe<User>,
-  hello?: Maybe<Scalars['String']>,
-  getAllUsers: Array<User>,
+  AmIAuthorized?: Maybe<Scalars['String']>,
 };
 
 
@@ -191,20 +190,20 @@ export type RegisterMutation = (
   ) }
 );
 
+export type AmIAuthorizedQueryVariables = {};
+
+
+export type AmIAuthorizedQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'AmIAuthorized'>
+);
+
 export type FilesQueryVariables = {};
 
 
 export type FilesQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'files'>
-);
-
-export type HelloQueryVariables = {};
-
-
-export type HelloQuery = (
-  { __typename?: 'Query' }
-  & Pick<Query, 'hello'>
 );
 
 export type MeQueryVariables = {};
@@ -406,6 +405,29 @@ export function withRegister<TProps, TChildProps = {}>(operationOptions?: Apollo
 };
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const AmIAuthorizedDocument = gql`
+    query amIAuthorized {
+  AmIAuthorized
+}
+    `;
+export type AmIAuthorizedComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AmIAuthorizedQuery, AmIAuthorizedQueryVariables>, 'query'>;
+
+    export const AmIAuthorizedComponent = (props: AmIAuthorizedComponentProps) => (
+      <ApolloReactComponents.Query<AmIAuthorizedQuery, AmIAuthorizedQueryVariables> query={AmIAuthorizedDocument} {...props} />
+    );
+    
+export type AmIAuthorizedProps<TChildProps = {}> = ApolloReactHoc.DataProps<AmIAuthorizedQuery, AmIAuthorizedQueryVariables> & TChildProps;
+export function withAmIAuthorized<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AmIAuthorizedQuery,
+  AmIAuthorizedQueryVariables,
+  AmIAuthorizedProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, AmIAuthorizedQuery, AmIAuthorizedQueryVariables, AmIAuthorizedProps<TChildProps>>(AmIAuthorizedDocument, {
+      alias: 'amIAuthorized',
+      ...operationOptions
+    });
+};
+export type AmIAuthorizedQueryResult = ApolloReactCommon.QueryResult<AmIAuthorizedQuery, AmIAuthorizedQueryVariables>;
 export const FilesDocument = gql`
     query Files {
   files
@@ -429,29 +451,6 @@ export function withFiles<TProps, TChildProps = {}>(operationOptions?: ApolloRea
     });
 };
 export type FilesQueryResult = ApolloReactCommon.QueryResult<FilesQuery, FilesQueryVariables>;
-export const HelloDocument = gql`
-    query Hello {
-  hello
-}
-    `;
-export type HelloComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<HelloQuery, HelloQueryVariables>, 'query'>;
-
-    export const HelloComponent = (props: HelloComponentProps) => (
-      <ApolloReactComponents.Query<HelloQuery, HelloQueryVariables> query={HelloDocument} {...props} />
-    );
-    
-export type HelloProps<TChildProps = {}> = ApolloReactHoc.DataProps<HelloQuery, HelloQueryVariables> & TChildProps;
-export function withHello<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  HelloQuery,
-  HelloQueryVariables,
-  HelloProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, HelloQuery, HelloQueryVariables, HelloProps<TChildProps>>(HelloDocument, {
-      alias: 'hello',
-      ...operationOptions
-    });
-};
-export type HelloQueryResult = ApolloReactCommon.QueryResult<HelloQuery, HelloQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {

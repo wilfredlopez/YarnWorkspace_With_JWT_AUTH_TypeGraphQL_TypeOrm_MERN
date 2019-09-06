@@ -57,13 +57,12 @@ function create(initialState: any, { getToken, fetchOptions }: any) {
   })
 
   const authLink = setContext((req, { headers }) => {
-    const token = parseCookies()["access-token"]
+    const token = getToken()
     return {
       headers: {
         ...headers,
         authorization: token ? `Bearer ${token}` : "",
-        cookie: token ? `access-token=${token}` : "",
-        // cookie: token ? `${token}` : "",
+        cookie: token ? `token=${token}` : "",
       },
       cookies: {
         cookies: { token },

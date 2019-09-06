@@ -138,9 +138,9 @@ export class UserResolver {
     return true
   }
 
-  @Authorized()
+  @Authorized() //only authorized members can access
   @Query(() => String, { nullable: true })
-  async hello(@Ctx() ctx: MyContext): Promise<string> {
+  async AmIAuthorized(@Ctx() ctx: MyContext): Promise<string> {
     // //@ts-ignore
     // if (!ctx.req.session.userId) {
     //   return null
@@ -148,11 +148,11 @@ export class UserResolver {
     return "Hello World"
   }
 
-  @Query(returns => [User])
-  async getAllUsers() {
-    const users = await User.find()
-    return users
-  }
+  // @Query(returns => [User])
+  // async getAllUsers() {
+  //   const users = await User.find()
+  //   return users
+  // }
 }
 
 export default UserResolver
