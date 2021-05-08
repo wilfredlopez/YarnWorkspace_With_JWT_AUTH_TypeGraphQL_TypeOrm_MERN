@@ -19,7 +19,7 @@
     "rimraf": "^3.0.0",
     "ts-node-dev": "^1.0.0-pre.42",
     "type-graphql": "^0.17.5",
-    "typeorm": "0.2.18",
+    "typeorm": "0.2.25",
     "uuidv4": "^5.0.0"
   },
   "devDependencies": {
